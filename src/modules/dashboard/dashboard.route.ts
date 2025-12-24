@@ -1,5 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { EmptyLayout } from '@/layouts'
+import AppLayout from '@/layouts/AppLayout.vue'
 
 const Dashboard: () => Promise<typeof import('@/modules/dashboard/pages/Dashboard.vue')> = () => import('@/modules/dashboard/pages/Dashboard.vue')
 
@@ -9,7 +10,7 @@ export const dashboardRoutes: Array<RouteRecordRaw> = [
     path: '/',
     component: Dashboard,
     meta: {
-      layout: EmptyLayout,
+      layout: AppLayout,
     },
   },
 ]

@@ -1,3 +1,4 @@
+// import path from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import tailwindcss from '@tailwindcss/vite'
@@ -14,6 +15,7 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
+        // '@': path.resolve(__dirname, './src'),
       },
     },
     server: {
