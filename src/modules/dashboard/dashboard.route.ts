@@ -1,5 +1,4 @@
 import type { RouteRecordRaw } from 'vue-router'
-import { EmptyLayout } from '@/layouts'
 import AppLayout from '@/layouts/AppLayout.vue'
 
 const Dashboard: () => Promise<typeof import('@/modules/dashboard/pages/Dashboard.vue')> = () => import('@/modules/dashboard/pages/Dashboard.vue')
