@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { LucideIcon } from "lucide-vue-next"
-import { ChevronRight } from "lucide-vue-next"
+import type { LucideIcon } from 'lucide-vue-next'
+import { ChevronRight } from 'lucide-vue-next'
 import {
   Collapsible,
   CollapsibleContent,
@@ -26,6 +26,7 @@ defineProps<{
     items?: {
       title: string
       url: string
+      isActive?: boolean
     }[]
   }[]
 }>()
@@ -53,7 +54,7 @@ defineProps<{
           <CollapsibleContent>
             <SidebarMenuSub>
               <SidebarMenuSubItem v-for="subItem in item.items" :key="subItem.title">
-                <SidebarMenuSubButton as-child>
+                <SidebarMenuSubButton as-child :is-active="subItem.isActive">
                   <a :href="subItem.url">
                     <span>{{ subItem.title }}</span>
                   </a>

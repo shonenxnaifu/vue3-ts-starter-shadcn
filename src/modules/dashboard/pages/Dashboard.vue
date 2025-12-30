@@ -3,6 +3,7 @@ import type { Payment } from '@/components/datatable/clientside/columns'
 import { onMounted, ref } from 'vue'
 import { columns } from '@/components/datatable/clientside/columns'
 import Datatable from '@/components/datatable/clientside/DataTable.vue'
+import DataTableServerSide from '@/components/datatable/serverside/DataTable.vue'
 import dummyPayments from '@/modules/payment/data/data.dummy.json'
 import SectionCards from '../components/SectionCards.vue'
 
@@ -23,4 +24,5 @@ onMounted(async () => {
 <template>
   <SectionCards />
   <Datatable :columns="columns" :data="data" />
+  <DataTableServerSide />
 </template>
