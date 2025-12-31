@@ -44,13 +44,19 @@ defineProps<{
         class="group/collapsible"
       >
         <SidebarMenuItem>
-          <CollapsibleTrigger as-child>
+          <CollapsibleTrigger v-if="item.items" as-child>
             <SidebarMenuButton :tooltip="item.title">
               <component :is="item.icon" v-if="item.icon" />
               <span>{{ item.title }}</span>
               <ChevronRight class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
             </SidebarMenuButton>
           </CollapsibleTrigger>
+          <SidebarMenuButton v-else as-child :is-active="item.isActive">
+            <a :href="item.url">
+              <component :is="item.icon" />
+              <span>{{ item.title }}</span>
+            </a>
+          </SidebarMenuButton>
           <CollapsibleContent>
             <SidebarMenuSub>
               <SidebarMenuSubItem v-for="subItem in item.items" :key="subItem.title">

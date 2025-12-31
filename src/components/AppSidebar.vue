@@ -56,10 +56,26 @@ const data = {
   ],
   navMain: [
     {
+      title: 'Dashboard',
+      url: '/',
+      icon: Frame,
+      isActive: true,
+    },
+    {
+      title: 'Modules',
+      url: '#',
+      icon: SquareTerminal,
+      items: [
+        {
+          title: 'Posts',
+          url: '/posts',
+        },
+      ],
+    },
+    {
       title: 'Playground',
       url: '#',
       icon: SquareTerminal,
-      isActive: true,
       items: [
         {
           title: 'History',

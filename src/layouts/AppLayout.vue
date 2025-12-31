@@ -39,7 +39,7 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/s
         </div>
       </header>
       <div class="flex flex-1 flex-col">
-        <div class="@container/main flex flex-1 flex-col gap-2 p-4 pt-0">
+        <div class="@container/main flex flex-1 flex-col gap-2 px-4 py-8">
           <slot />
         </div>
       </div>
