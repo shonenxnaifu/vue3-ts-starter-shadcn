@@ -3,7 +3,7 @@ import Axios from 'axios'
 import { useAuthStore } from '@/stores'
 
 export const axios = Axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_APP_API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -20,7 +20,8 @@ function responseHandler(response: AxiosResponse): any {
       return Promise.reject(new Error(data.message) || 'Unknown error occurred')
     }
 
-    return { ...data, message: data.message }
+    // return { ...data, message: data.message }
+    return { data, message: data.message }
   }
 
   return response
