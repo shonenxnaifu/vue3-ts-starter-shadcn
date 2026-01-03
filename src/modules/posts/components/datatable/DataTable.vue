@@ -12,7 +12,7 @@ import {
 import { ref } from 'vue'
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { useGetPostQuery } from '../../composables/usePostQuery'
+import { usePaginationQuery } from '../../composables/usePostQuery'
 import { columns } from './columns'
 
 const INITIAL_PAGE_INDEX = 0
@@ -25,18 +25,14 @@ const pagination = ref<PaginationState>({
   pageSize: INITIAL_PAGE_SIZE,
 })
 
-const pageParams = ref<{ _page: number, _limit: number }>({
-  _page: 1,
-  _limit: 10,
-})
-const { data: posts, isLoading } = useGetPostQuery(pageParams.value)
+const { data: postData, isFetching } = usePaginationQuery(pagination)
 
 const table = useVueTable({
   get data() {
-    return posts.value || []
+    return postData.value?.data || []
   },
   get pageCount() {
-    return 100 / 10
+    return postData.value?.totalData ? Math.ceil(postData.value?.totalData / pagination.value.pageSize) : 0
   },
   get columns() { return columns },
   state: {
@@ -158,7 +154,7 @@ function handlePageSizeChange(e: any) {
         »
       </Button>
 
-      {{ isLoading ? 'Loading...' : null }}
+      {{ isFetching ? 'Loading...' : null }}
     </div>
   </div>
   <div class="rounded-md bg-slate-300 p-2">

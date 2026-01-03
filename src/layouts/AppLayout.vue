@@ -24,16 +24,18 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/s
             class="mr-2 data-[orientation=vertical]:h-4"
           />
           <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem class="hidden md:block">
-                <BreadcrumbLink href="#">
-                  Building Your Application
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator class="hidden md:block" />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-              </BreadcrumbItem>
+            <BreadcrumbList class="capitalize">
+              <template v-for="(routeMatched, index) in $route.matched" :key="routeMatched.name">
+                <BreadcrumbItem v-if="index !== ($route.matched.length - 1)" class="hidden md:block">
+                  <BreadcrumbLink href="#">
+                    {{ routeMatched.name }}
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbItem v-else>
+                  <BreadcrumbPage>{{ routeMatched.name }}</BreadcrumbPage>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator v-if="index !== ($route.matched.length - 1)" class="hidden md:block" />
+              </template>
             </BreadcrumbList>
           </Breadcrumb>
         </div>

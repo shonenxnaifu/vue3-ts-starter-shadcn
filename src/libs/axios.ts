@@ -10,20 +10,20 @@ export const axios = Axios.create({
 })
 
 function responseHandler(response: AxiosResponse): any {
-  const contentType = response.headers['content-type']
+  // const contentType = response.headers['content-type']
 
-  if (contentType && contentType.includes('application/json')) {
-    const data = response.data
+  // if (contentType && contentType.includes('application/json')) {
+  //   const data = response.data
 
-    if (data.success === false) {
-      console.error('API operation failed:', data.message)
-      return Promise.reject(new Error(data.message) || 'Unknown error occurred')
-    }
+  //   if (data.success === false) {
+  //     console.error('API operation failed:', data.message)
+  //     return Promise.reject(new Error(data.message) || 'Unknown error occurred')
+  //   }
 
-    // return { ...data, message: data.message }
-    return { data, message: data.message }
-  }
+  //   return { ...data, message: data.message }
+  // }
 
+  // return native axios response
   return response
 }
 

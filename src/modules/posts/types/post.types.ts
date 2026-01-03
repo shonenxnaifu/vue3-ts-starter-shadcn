@@ -7,4 +7,7 @@ export interface Post {
 
 export interface PostListResponse {
   data: Post[]
+  page?: number
+  limit?: number
+  totalData?: number
 }

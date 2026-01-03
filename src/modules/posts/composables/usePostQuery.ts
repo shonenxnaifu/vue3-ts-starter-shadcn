@@ -1,15 +1,20 @@
 import type { UseQueryReturnType } from '@tanstack/vue-query'
-import type { Post, PostListResponse } from '@/modules/posts/types'
-import { keepPreviousData, useQuery } from '@tanstack/vue-query'
+import type { PaginationState } from '@tanstack/vue-table'
+import type { Ref } from 'vue'
+import type { PostListResponse } from '@/modules/posts/types'
+import { useQuery } from '@tanstack/vue-query'
 import { getPosts } from '@/modules/posts/api/postService'
 
-export function useGetPostQuery(params?: { _page?: number, _limit?: number }): UseQueryReturnType<Post[], Error> {
+export function usePaginationQuery(pagination: Ref<PaginationState>): UseQueryReturnType<PostListResponse, Error> {
   return useQuery({
-    queryKey: ['posts-infinite', params],
+    queryKey: ['posts-infinite', pagination],
     queryFn: async () => {
-      const respData = await getPosts(params)
+      const respData = await getPosts({
+        _page: pagination.value.pageIndex + 1,
+        _limit: pagination.value.pageSize,
+      })
       return respData
     },
-    placeholderData: keepPreviousData,
+    placeholderData: previousData => previousData,
   })
 }
