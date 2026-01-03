@@ -86,18 +86,18 @@ function checkIfMenuActive(item: MenuItem): boolean {
             </SidebarMenuButton>
           </CollapsibleTrigger>
           <SidebarMenuButton v-else as-child :is-active="checkIfMenuActive(item)">
-            <a :href="item.url">
+            <RouterLink :to="item.url">
               <component :is="item.icon" />
               <span>{{ item.title }}</span>
-            </a>
+            </RouterLink>
           </SidebarMenuButton>
           <CollapsibleContent>
             <SidebarMenuSub>
               <SidebarMenuSubItem v-for="subItem in item.items" :key="subItem.title">
                 <SidebarMenuSubButton as-child :is-active="checkIfMenuActive(subItem)">
-                  <a :href="subItem.url">
+                  <RouterLink :to="subItem.url">
                     <span>{{ subItem.title }}</span>
-                  </a>
+                  </RouterLink>
                 </SidebarMenuSubButton>
               </SidebarMenuSubItem>
             </SidebarMenuSub>
