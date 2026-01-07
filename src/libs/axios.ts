@@ -9,7 +9,7 @@ export const axios = Axios.create({
   },
 })
 
-function responseHandler(response: AxiosResponse): any {
+function responseHandler<T = unknown>(response: AxiosResponse<T>): AxiosResponse<T> {
   // const contentType = response.headers['content-type']
 
   // if (contentType && contentType.includes('application/json')) {
