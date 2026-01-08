@@ -10,18 +10,28 @@ export const axios = Axios.create({
 })
 
 function responseHandler<T = unknown>(response: AxiosResponse<T>): AxiosResponse<T> {
-  // const contentType = response.headers['content-type']
+  const contentType = response.headers['content-type']
 
-  // if (contentType && contentType.includes('application/json')) {
-  //   const data = response.data
+  if (contentType && contentType.includes('application/json')) {
+    const data = response.data
 
-  //   if (data.success === false) {
-  //     console.error('API operation failed:', data.message)
-  //     return Promise.reject(new Error(data.message) || 'Unknown error occurred')
-  //   }
+    // Type guard to check if data has the expected structure
+    if (typeof data === 'object' && data !== null && 'success' in data) {
+      const typedData = data as { success?: boolean; message?: string }
 
-  //   return { ...data, message: data.message }
-  // }
+      if (typedData.success === false) {
+        console.error('API operation failed:', typedData.message)
+        throw new Error(typedData.message || 'Unknown error occurred')
+      }
+
+      // If we want to transform the response data while preserving the AxiosResponse structure,
+      // we need to return a new AxiosResponse with the transformed data
+      return {
+        ...response,
+        data: { ...data, message: typedData.message } as T
+      }
+    }
+  }
 
   // return native axios response
   return response

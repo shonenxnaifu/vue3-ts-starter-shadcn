@@ -1,0 +1,1718 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is swagger API",
+        "title": "App Service",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "email": "fiber@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "paths": {
+        "/backoffice/api/v1/admin/users/{user_id}/devices": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Get list of active devices/sessions for a user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Admin Devices"
+                ],
+                "summary": "Get user devices",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_AdminUserDevicesResponse"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Reset/logout all devices for a user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Admin Devices"
+                ],
+                "summary": "Reset all devices",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_AdminResetAllDevicesResponse"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/backoffice/api/v1/admin/users/{user_id}/devices/{session_id}": {
+            "delete": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Reset/logout a specific device for a user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Admin Devices"
+                ],
+                "summary": "Reset device",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Session ID",
+                        "name": "session_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_AdminResetDeviceResponse"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/backoffice/api/v1/users": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Get list of users with pagination, search, and filters",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "List users",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User type: internal, mitra",
+                        "name": "type",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Page number",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Page size",
+                        "name": "size",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Search by name or email",
+                        "name": "search",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Filter by role ID",
+                        "name": "role_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Filter by mitra ID",
+                        "name": "mitra_id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "Filter by active status",
+                        "name": "active",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.PaginatedResponse-voucher-aggregator_internal-backoffice_internal_model_dto_UserListItem"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Create a new user (internal or mitra)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Create user",
+                "parameters": [
+                    {
+                        "description": "Create user request",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.CreateUserRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_UserCreateResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/backoffice/api/v1/users/mitra-list": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Get list of mitra companies for dropdown",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get mitra list",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Search by name or code",
+                        "name": "search",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Max results (default: 20)",
+                        "name": "limit",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-array_voucher-aggregator_internal-backoffice_internal_model_dto_MitraOption"
+                        }
+                    }
+                }
+            }
+        },
+        "/backoffice/api/v1/users/roles": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Get list of roles for dropdown",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get roles list",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Filter by type",
+                        "name": "type",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-array_voucher-aggregator_internal-backoffice_internal_model_dto_RoleOption"
+                        }
+                    }
+                }
+            }
+        },
+        "/backoffice/api/v1/users/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Get user detail by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get user detail",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_UserDetailResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Update user data (email cannot be changed)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Update user request",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.UpdateUserRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_UserUpdateResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Soft delete user (deactivate)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Delete user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/backoffice/api/v1/users/{id}/password": {
+            "patch": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Reset or change user password",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Change user password",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Password request",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.UpdateUserPasswordRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/backoffice/api/v1/users/{id}/status": {
+            "patch": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Activate or deactivate a user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Toggle user status",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Status request",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.UpdateUserStatusRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_UserStatusResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/backoffice/auth/login": {
+            "post": {
+                "description": "Authenticate user with email and password, returns JWT token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User login",
+                "parameters": [
+                    {
+                        "description": "Login request",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.LoginRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_AuthResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/backoffice/auth/logout": {
+            "post": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Logout user and invalidate permission cache",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User logout",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_LogoutResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/backoffice/auth/menus": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Get hierarchical menu structure for authenticated user based on their role permissions",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Get user menus",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-array_voucher-aggregator_internal-backoffice_internal_model_dto_MenuResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/backoffice/auth/refresh": {
+            "post": {
+                "description": "Generate a new access token using a valid refresh token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Refresh access token",
+                "parameters": [
+                    {
+                        "description": "Refresh token request",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.RefreshTokenRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_RefreshTokenResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/backoffice/auth/register": {
+            "post": {
+                "description": "Register a new user with email, password, and role",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register new user",
+                "parameters": [
+                    {
+                        "description": "Register request",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.RegisterRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_AuthResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any"
+                        }
+                    }
+                }
+            }
+        },
+        "/health": {
+            "get": {
+                "description": "health check service",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "General"
+                ],
+                "summary": "Health Check Service",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_HealthCheckResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "voucher-aggregator_internal-backoffice_internal_model_dto.AdminDeviceResponse": {
+            "type": "object",
+            "properties": {
+                "device_name": {
+                    "type": "string"
+                },
+                "device_type": {
+                    "type": "string"
+                },
+                "ip_address": {
+                    "type": "string"
+                },
+                "last_activity": {
+                    "type": "string"
+                },
+                "login_time": {
+                    "type": "string"
+                },
+                "session_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.AdminResetAllDevicesResponse": {
+            "type": "object",
+            "properties": {
+                "reset_count": {
+                    "type": "integer"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.AdminResetDeviceResponse": {
+            "type": "object",
+            "properties": {
+                "device_name": {
+                    "type": "string"
+                },
+                "session_id": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.AdminUserDevicesResponse": {
+            "type": "object",
+            "properties": {
+                "devices": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.AdminDeviceResponse"
+                    }
+                },
+                "max_session": {
+                    "type": "integer"
+                },
+                "user_email": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.AuthResponse": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "expires_in": {
+                    "description": "seconds",
+                    "type": "integer"
+                },
+                "forced_logout_device": {
+                    "description": "Only present if auto force logout occurred",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.ForcedLogoutDevice"
+                        }
+                    ]
+                },
+                "refresh_token": {
+                    "description": "Optional refresh token",
+                    "type": "string"
+                },
+                "role_code": {
+                    "type": "string"
+                },
+                "session_id": {
+                    "description": "Session ID for tracking",
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-any": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "data": {},
+                "message": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-array_voucher-aggregator_internal-backoffice_internal_model_dto_MenuResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.MenuResponse"
+                    }
+                },
+                "message": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-array_voucher-aggregator_internal-backoffice_internal_model_dto_MitraOption": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.MitraOption"
+                    }
+                },
+                "message": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-array_voucher-aggregator_internal-backoffice_internal_model_dto_RoleOption": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.RoleOption"
+                    }
+                },
+                "message": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_AdminResetAllDevicesResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "data": {
+                    "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.AdminResetAllDevicesResponse"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_AdminResetDeviceResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "data": {
+                    "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.AdminResetDeviceResponse"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_AdminUserDevicesResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "data": {
+                    "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.AdminUserDevicesResponse"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_AuthResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "data": {
+                    "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.AuthResponse"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_HealthCheckResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "data": {
+                    "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.HealthCheckResponse"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_LogoutResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "data": {
+                    "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.LogoutResponse"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_RefreshTokenResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "data": {
+                    "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.RefreshTokenResponse"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_UserCreateResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "data": {
+                    "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.UserCreateResponse"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_UserDetailResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "data": {
+                    "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.UserDetailResponse"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_UserStatusResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "data": {
+                    "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.UserStatusResponse"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.BaseResponse-voucher-aggregator_internal-backoffice_internal_model_dto_UserUpdateResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "data": {
+                    "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.UserUpdateResponse"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.CreateUserRequest": {
+            "type": "object",
+            "required": [
+                "email",
+                "full_name",
+                "password",
+                "phone_number",
+                "role_id",
+                "type"
+            ],
+            "properties": {
+                "active": {
+                    "type": "boolean"
+                },
+                "email": {
+                    "type": "string",
+                    "maxLength": 150
+                },
+                "full_name": {
+                    "type": "string",
+                    "maxLength": 255
+                },
+                "max_concurrent_session": {
+                    "type": "integer",
+                    "maximum": 10,
+                    "minimum": 1
+                },
+                "mitra_id": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string",
+                    "minLength": 8
+                },
+                "phone_number": {
+                    "type": "string",
+                    "maxLength": 25
+                },
+                "role_id": {
+                    "type": "integer"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "internal",
+                        "mitra"
+                    ]
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.ForcedLogoutDevice": {
+            "type": "object",
+            "properties": {
+                "device_name": {
+                    "type": "string"
+                },
+                "logout_reason": {
+                    "type": "string"
+                },
+                "session_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.HealthCheckResponse": {
+            "type": "object",
+            "properties": {
+                "dbTime": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.LoginRequest": {
+            "type": "object",
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.LogoutResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.MenuResponse": {
+            "type": "object",
+            "properties": {
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.MenuResponse"
+                    }
+                },
+                "code": {
+                    "type": "string"
+                },
+                "icon": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "permissions": {
+                    "description": "{\"read\": true, \"create\": false}",
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "boolean"
+                    }
+                },
+                "sort_order": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "version": {
+                    "description": "Menu version for cache invalidation",
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.MitraDetail": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "partnership_scheme": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.MitraOption": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.MitraRef": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.PaginatedResponse-voucher-aggregator_internal-backoffice_internal_model_dto_UserListItem": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.UserListItem"
+                    }
+                },
+                "message": {
+                    "type": "string"
+                },
+                "meta": {
+                    "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.PaginationMeta"
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.PaginationMeta": {
+            "type": "object",
+            "properties": {
+                "page": {
+                    "type": "integer"
+                },
+                "size": {
+                    "type": "integer"
+                },
+                "total_items": {
+                    "type": "integer"
+                },
+                "total_pages": {
+                    "type": "integer"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.RefreshTokenRequest": {
+            "type": "object",
+            "required": [
+                "refresh_token"
+            ],
+            "properties": {
+                "refresh_token": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.RefreshTokenResponse": {
+            "type": "object",
+            "properties": {
+                "expires_in": {
+                    "description": "seconds",
+                    "type": "integer"
+                },
+                "refresh_token": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.RegisterRequest": {
+            "type": "object",
+            "required": [
+                "email",
+                "full_name",
+                "password",
+                "phone_number",
+                "role_code"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "full_name": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 2
+                },
+                "password": {
+                    "type": "string",
+                    "minLength": 8
+                },
+                "phone_number": {
+                    "type": "string"
+                },
+                "role_code": {
+                    "description": "Default role for new user",
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.RoleDetail": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.RoleOption": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.RoleRef": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.UpdateUserPasswordRequest": {
+            "type": "object",
+            "required": [
+                "new_password"
+            ],
+            "properties": {
+                "new_password": {
+                    "type": "string",
+                    "minLength": 8
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.UpdateUserRequest": {
+            "type": "object",
+            "required": [
+                "full_name",
+                "phone_number",
+                "role_id"
+            ],
+            "properties": {
+                "active": {
+                    "type": "boolean"
+                },
+                "full_name": {
+                    "type": "string",
+                    "maxLength": 255
+                },
+                "max_concurrent_session": {
+                    "type": "integer",
+                    "maximum": 10,
+                    "minimum": 1
+                },
+                "phone_number": {
+                    "type": "string",
+                    "maxLength": 25
+                },
+                "role_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.UpdateUserStatusRequest": {
+            "type": "object",
+            "properties": {
+                "active": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.UserCreateResponse": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "full_name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.UserDetailResponse": {
+            "type": "object",
+            "properties": {
+                "active": {
+                    "type": "boolean"
+                },
+                "created": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "full_name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "max_concurrent_session": {
+                    "type": "integer"
+                },
+                "mitra": {
+                    "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.MitraDetail"
+                },
+                "phone_number": {
+                    "type": "string"
+                },
+                "role": {
+                    "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.RoleDetail"
+                },
+                "type": {
+                    "description": "internal | mitra",
+                    "type": "string"
+                },
+                "updated": {
+                    "type": "string"
+                },
+                "updated_by": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.UserListItem": {
+            "type": "object",
+            "properties": {
+                "active": {
+                    "type": "boolean"
+                },
+                "created": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "full_name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "max_concurrent_session": {
+                    "type": "integer"
+                },
+                "mitra": {
+                    "description": "Only for mitra users",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.MitraRef"
+                        }
+                    ]
+                },
+                "phone_number": {
+                    "type": "string"
+                },
+                "role": {
+                    "$ref": "#/definitions/voucher-aggregator_internal-backoffice_internal_model_dto.RoleRef"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.UserStatusResponse": {
+            "type": "object",
+            "properties": {
+                "active": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "voucher-aggregator_internal-backoffice_internal_model_dto.UserUpdateResponse": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "full_name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "Bearer": {
+            "description": "Type \"Bearer\" followed by a space and JWT token.",
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}
