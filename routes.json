@@ -1,7 +1,0 @@
-{
-  "/backoffice/api/v1/users": "/users",
-  "/backoffice/api/v1/users/:id": "/users/:id",
-  "/backoffice/api/v1/users/mitra-list": "/mitra_list",
-  "/backoffice/api/v1/users/roles": "/roles",
-  "/health": "/health"
-}
