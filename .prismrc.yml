@@ -1,0 +1,91 @@
+# Prism Mock Server Configuration
+servers:
+  - port: 4010
+    host: 0.0.0.0
+
+# Path to the OpenAPI/Swagger specification
+spec: ./docs/swagger.json
+
+# Configure the server behavior
+mock:
+  # Enable CORS
+  cors: true
+  # Delay responses (in milliseconds) to simulate network latency
+  delay: 0
+  # Disable dynamic responses to use custom configurations
+  dynamic: false
+
+# Configure validation
+validation:
+  # Validate request bodies
+  request: true
+  # Validate response bodies
+  response: true
+
+# Operations configuration for specific endpoints
+operations:
+  # For login endpoint, return a mock JWT token when the correct credentials are provided
+  "/backoffice/auth/login":
+    POST:
+      # Define the expected request body for login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: "useradmin1@iconpln.co.id"
+                password:
+                  type: string
+                  example: "123456"
+              required:
+                - email
+                - password
+      # Define the response for successful login to prevent dynamic generation
+      responses:
+        "200":
+          description: "Successful login"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: "200"
+                  data:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                        example: "useradmin1@iconpln.co.id"
+                      token:
+                        type: string
+                        example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFkbWluIFVzZXIiLCJpYXQiOjE1MTYyMzkwMjJ9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                      refresh_token:
+                        type: string
+                        example: "refresh_token_example"
+                      expires_in:
+                        type: integer
+                        example: 3600
+                      user_id:
+                        type: string
+                        example: "1"
+                      role_code:
+                        type: string
+                        example: "admin"
+                      session_id:
+                        type: string
+                        example: "session_123"
+                      forced_logout_device:
+                        type: object
+                        nullable: true
+                        example: null
+                  message:
+                    type: string
+                    example: "Success"
+                  time:
+                    type: string
+                    example: "2023-01-01T00:00:00Z"

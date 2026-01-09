@@ -54,6 +54,43 @@ Vue Query is configured in `src/libs/vue-query.ts` with default options:
 - retry: 0
 - refetchOnWindowFocus: false
 
+## Using Mock API Server for Development
+
+For local development and testing, this project includes a Prism mock server that simulates the backend API based on the OpenAPI specification. This allows you to develop frontend features without needing a live backend.
+
+### Setting Up the Mock Server
+
+1. Install Prism CLI globally:
+   ```bash
+   npm install -g @stoplight/prism-cli
+   ```
+
+2. Start the mock server:
+   ```bash
+   npm run mock
+   # or
+   pnpm mock
+   ```
+
+3. The server will be available at `http://localhost:4010`
+
+### Authentication Credentials
+
+The mock server is configured with the following credentials for testing:
+- Email: `useradmin1@iconpln.co.id`
+- Password: `123456`
+
+### Switching to Mock Server
+
+To use the mock server instead of the real API:
+
+1. Update your `.env.development` file:
+   ```
+   VITE_API_BASE_URL=http://localhost:4010
+   ```
+
+2. Restart your development server
+
 ## Module-Based Structure (Recommended for Multiple Features)
 
 When working with multiple modules/features/domains, it's recommended to organize API calls and composables within each feature module. This approach provides better maintainability and scalability.
