@@ -1,0 +1,456 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "full_name": "John Doe",
+      "email": "john.doe@example.com",
+      "role": {
+        "id": 1,
+        "name": "admin"
+      },
+      "type": "internal",
+      "active": true,
+      "created": "2023-01-01T00:00:00Z",
+      "phone_number": "+1234567890",
+      "max_concurrent_session": 3,
+      "mitra": {
+        "id": "1",
+        "name": "Sample Mitra",
+        "code": "SM001"
+      }
+    },
+    {
+      "id": "2",
+      "full_name": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "role": {
+        "id": 2,
+        "name": "manager"
+      },
+      "type": "internal",
+      "active": true,
+      "created": "2023-01-02T00:00:00Z",
+      "phone_number": "+1987654321",
+      "max_concurrent_session": 3,
+      "mitra": null
+    },
+    {
+      "id": "3",
+      "full_name": "Bob Johnson",
+      "email": "bob.johnson@example.com",
+      "role": {
+        "id": 3,
+        "name": "operator"
+      },
+      "type": "mitra",
+      "active": true,
+      "created": "2023-01-03T00:00:00Z",
+      "phone_number": "+1555555555",
+      "max_concurrent_session": 2,
+      "mitra": {
+        "id": "2",
+        "name": "Partner Mitra",
+        "code": "PM002"
+      }
+    },
+    {
+      "id": "4",
+      "full_name": "Alice Williams",
+      "email": "alice.williams@example.com",
+      "role": {
+        "id": 1,
+        "name": "admin"
+      },
+      "type": "internal",
+      "active": true,
+      "created": "2023-01-04T00:00:00Z",
+      "phone_number": "+1111111111",
+      "max_concurrent_session": 3,
+      "mitra": null
+    },
+    {
+      "id": "5",
+      "full_name": "Charlie Brown",
+      "email": "charlie.brown@example.com",
+      "role": {
+        "id": 3,
+        "name": "operator"
+      },
+      "type": "mitra",
+      "active": true,
+      "created": "2023-01-05T00:00:00Z",
+      "phone_number": "+2222222222",
+      "max_concurrent_session": 2,
+      "mitra": {
+        "id": "3",
+        "name": "Corporate Mitra",
+        "code": "CM003"
+      }
+    },
+    {
+      "id": "6",
+      "full_name": "Diana Miller",
+      "email": "diana.miller@example.com",
+      "role": {
+        "id": 2,
+        "name": "manager"
+      },
+      "type": "internal",
+      "active": true,
+      "created": "2023-01-06T00:00:00Z",
+      "phone_number": "+3333333333",
+      "max_concurrent_session": 3,
+      "mitra": null
+    },
+    {
+      "id": "7",
+      "full_name": "Edward Taylor",
+      "email": "edward.taylor@example.com",
+      "role": {
+        "id": 3,
+        "name": "operator"
+      },
+      "type": "mitra",
+      "active": true,
+      "created": "2023-01-07T00:00:00Z",
+      "phone_number": "+4444444444",
+      "max_concurrent_session": 2,
+      "mitra": {
+        "id": "1",
+        "name": "Sample Mitra",
+        "code": "SM001"
+      }
+    },
+    {
+      "id": "8",
+      "full_name": "Fiona Davis",
+      "email": "fiona.davis@example.com",
+      "role": {
+        "id": 1,
+        "name": "admin"
+      },
+      "type": "internal",
+      "active": true,
+      "created": "2023-01-08T00:00:00Z",
+      "phone_number": "+5555555555",
+      "max_concurrent_session": 3,
+      "mitra": null
+    },
+    {
+      "id": "9",
+      "full_name": "George Wilson",
+      "email": "george.wilson@example.com",
+      "role": {
+        "id": 2,
+        "name": "manager"
+      },
+      "type": "internal",
+      "active": true,
+      "created": "2023-01-09T00:00:00Z",
+      "phone_number": "+6666666666",
+      "max_concurrent_session": 3,
+      "mitra": null
+    },
+    {
+      "id": "10",
+      "full_name": "Helen Moore",
+      "email": "helen.moore@example.com",
+      "role": {
+        "id": 3,
+        "name": "operator"
+      },
+      "type": "mitra",
+      "active": true,
+      "created": "2023-01-10T00:00:00Z",
+      "phone_number": "+7777777777",
+      "max_concurrent_session": 2,
+      "mitra": {
+        "id": "2",
+        "name": "Partner Mitra",
+        "code": "PM002"
+      }
+    },
+    {
+      "id": "11",
+      "full_name": "Ian Taylor",
+      "email": "ian.taylor@example.com",
+      "role": {
+        "id": 1,
+        "name": "admin"
+      },
+      "type": "internal",
+      "active": true,
+      "created": "2023-01-11T00:00:00Z",
+      "phone_number": "+8888888888",
+      "max_concurrent_session": 3,
+      "mitra": null
+    },
+    {
+      "id": "12",
+      "full_name": "Julia Anderson",
+      "email": "julia.anderson@example.com",
+      "role": {
+        "id": 2,
+        "name": "manager"
+      },
+      "type": "internal",
+      "active": true,
+      "created": "2023-01-12T00:00:00Z",
+      "phone_number": "+9999999999",
+      "max_concurrent_session": 3,
+      "mitra": null
+    },
+    {
+      "id": "13",
+      "full_name": "Kevin Thomas",
+      "email": "kevin.thomas@example.com",
+      "role": {
+        "id": 3,
+        "name": "operator"
+      },
+      "type": "mitra",
+      "active": true,
+      "created": "2023-01-13T00:00:00Z",
+      "phone_number": "+1010101010",
+      "max_concurrent_session": 2,
+      "mitra": {
+        "id": "3",
+        "name": "Corporate Mitra",
+        "code": "CM003"
+      }
+    },
+    {
+      "id": "14",
+      "full_name": "Linda Jackson",
+      "email": "linda.jackson@example.com",
+      "role": {
+        "id": 1,
+        "name": "admin"
+      },
+      "type": "internal",
+      "active": true,
+      "created": "2023-01-14T00:00:00Z",
+      "phone_number": "+1111111111",
+      "max_concurrent_session": 3,
+      "mitra": null
+    },
+    {
+      "id": "15",
+      "full_name": "Michael White",
+      "email": "michael.white@example.com",
+      "role": {
+        "id": 2,
+        "name": "manager"
+      },
+      "type": "internal",
+      "active": true,
+      "created": "2023-01-15T00:00:00Z",
+      "phone_number": "+1212121212",
+      "max_concurrent_session": 3,
+      "mitra": null
+    },
+    {
+      "id": "16",
+      "full_name": "Nancy Harris",
+      "email": "nancy.harris@example.com",
+      "role": {
+        "id": 3,
+        "name": "operator"
+      },
+      "type": "mitra",
+      "active": true,
+      "created": "2023-01-16T00:00:00Z",
+      "phone_number": "+1313131313",
+      "max_concurrent_session": 2,
+      "mitra": {
+        "id": "1",
+        "name": "Sample Mitra",
+        "code": "SM001"
+      }
+    },
+    {
+      "id": "17",
+      "full_name": "Oliver Martin",
+      "email": "oliver.martin@example.com",
+      "role": {
+        "id": 1,
+        "name": "admin"
+      },
+      "type": "internal",
+      "active": true,
+      "created": "2023-01-17T00:00:00Z",
+      "phone_number": "+1414141414",
+      "max_concurrent_session": 3,
+      "mitra": null
+    },
+    {
+      "id": "18",
+      "full_name": "Paula Thompson",
+      "email": "paula.thompson@example.com",
+      "role": {
+        "id": 2,
+        "name": "manager"
+      },
+      "type": "internal",
+      "active": true,
+      "created": "2023-01-18T00:00:00Z",
+      "phone_number": "+1515151515",
+      "max_concurrent_session": 3,
+      "mitra": null
+    },
+    {
+      "id": "19",
+      "full_name": "Quincy Garcia",
+      "email": "quincy.garcia@example.com",
+      "role": {
+        "id": 3,
+        "name": "operator"
+      },
+      "type": "mitra",
+      "active": true,
+      "created": "2023-01-19T00:00:00Z",
+      "phone_number": "+1616161616",
+      "max_concurrent_session": 2,
+      "mitra": {
+        "id": "2",
+        "name": "Partner Mitra",
+        "code": "PM002"
+      }
+    },
+    {
+      "id": "20",
+      "full_name": "Rachel Martinez",
+      "email": "rachel.martinez@example.com",
+      "role": {
+        "id": 1,
+        "name": "admin"
+      },
+      "type": "internal",
+      "active": true,
+      "created": "2023-01-20T00:00:00Z",
+      "phone_number": "+1717171717",
+      "max_concurrent_session": 3,
+      "mitra": null
+    },
+    {
+      "id": "21",
+      "full_name": "Steven Robinson",
+      "email": "steven.robinson@example.com",
+      "role": {
+        "id": 2,
+        "name": "manager"
+      },
+      "type": "internal",
+      "active": true,
+      "created": "2023-01-21T00:00:00Z",
+      "phone_number": "+1818181818",
+      "max_concurrent_session": 3,
+      "mitra": null
+    },
+    {
+      "id": "22",
+      "full_name": "Tina Clark",
+      "email": "tina.clark@example.com",
+      "role": {
+        "id": 3,
+        "name": "operator"
+      },
+      "type": "mitra",
+      "active": true,
+      "created": "2023-01-22T00:00:00Z",
+      "phone_number": "+1919191919",
+      "max_concurrent_session": 2,
+      "mitra": {
+        "id": "3",
+        "name": "Corporate Mitra",
+        "code": "CM003"
+      }
+    },
+    {
+      "id": "23",
+      "full_name": "Ulysses Rodriguez",
+      "email": "ulysses.rodriguez@example.com",
+      "role": {
+        "id": 1,
+        "name": "admin"
+      },
+      "type": "internal",
+      "active": true,
+      "created": "2023-01-23T00:00:00Z",
+      "phone_number": "+2020202020",
+      "max_concurrent_session": 3,
+      "mitra": null
+    },
+    {
+      "id": "24",
+      "full_name": "Victoria Lewis",
+      "email": "victoria.lewis@example.com",
+      "role": {
+        "id": 2,
+        "name": "manager"
+      },
+      "type": "internal",
+      "active": true,
+      "created": "2023-01-24T00:00:00Z",
+      "phone_number": "+2121212121",
+      "max_concurrent_session": 3,
+      "mitra": null
+    },
+    {
+      "id": "25",
+      "full_name": "William Lee",
+      "email": "william.lee@example.com",
+      "role": {
+        "id": 3,
+        "name": "operator"
+      },
+      "type": "mitra",
+      "active": true,
+      "created": "2023-01-25T00:00:00Z",
+      "phone_number": "+2222222222",
+      "max_concurrent_session": 2,
+      "mitra": {
+        "id": "1",
+        "name": "Sample Mitra",
+        "code": "SM001"
+      }
+    }
+  ],
+  "mitra_list": [
+    {
+      "id": "1",
+      "name": "Sample Mitra",
+      "code": "SM001"
+    },
+    {
+      "id": "2",
+      "name": "Partner Mitra",
+      "code": "PM002"
+    },
+    {
+      "id": "3",
+      "name": "Corporate Mitra",
+      "code": "CM003"
+    }
+  ],
+  "roles": [
+    {
+      "id": 1,
+      "name": "admin",
+      "code": "ADMIN"
+    },
+    {
+      "id": 2,
+      "name": "manager",
+      "code": "MGR"
+    },
+    {
+      "id": 3,
+      "name": "operator",
+      "code": "OPR"
+    }
+  ],
+  "health": {
+    "dbTime": "2023-01-01T00:00:00Z"
+  }
+}

@@ -9,7 +9,8 @@ This document provides an overview of all the documentation available in the pro
 3. [State Management](./state-management.md) - Explanation of different types of state management approaches used in the project
 4. [API Calling Guide](./api_call.md) - Comprehensive guide on how to make API calls using the established patterns
 5. [Mock API Setup](./mock-api-setup.md) - Instructions for setting up and using the Prism mock server with the Swagger specification
-6. [API Specification](./swagger.json) - The OpenAPI/Swagger specification that defines the API endpoints
+6. [JSON Server Mock Implementation](./json-server-mock-implementation.md) - Documentation for the json-server mock API implementation
+7. [API Specification](./swagger.json) - The OpenAPI/Swagger specification that defines the API endpoints
 
 ## Relationship Between Documents
 
