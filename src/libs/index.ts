@@ -1,3 +1,2 @@
-export * from './axios';
-export * from './vue-query';
-
+export * from './axios-instances'
+export * from './vue-query'
