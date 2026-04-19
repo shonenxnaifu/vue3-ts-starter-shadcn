@@ -1,12 +1,11 @@
 import type { UseMutationReturnType } from '@tanstack/vue-query'
 import type { Auth } from '@/modules/auth/types'
-import type { ResponseApi } from '@/types'
 import { useMutation } from '@tanstack/vue-query'
 import { loginDefault, logoutDefault } from '@/modules/auth/api/authService'
 
-export function useLogin(): UseMutationReturnType<ResponseApi<Auth> | undefined, Error, { email: string, password: string }, unknown> {
+export function useLogin(): UseMutationReturnType<Auth | undefined, Error, { username: string, password: string }, unknown> {
   return useMutation({
-    mutationFn: async (params: { email: string, password: string }) => {
+    mutationFn: async (params: { username: string, password: string }) => {
       try {
         const respData = await loginDefault(params)
         return respData
@@ -18,7 +17,7 @@ export function useLogin(): UseMutationReturnType<ResponseApi<Auth> | undefined,
   })
 }
 
-export function useLogout(): UseMutationReturnType<ResponseApi<Auth> | undefined, Error, unknown, unknown> {
+export function useLogout(): UseMutationReturnType<Auth | undefined, Error, unknown, unknown> {
   return useMutation({
     mutationFn: async () => {
       try {

@@ -3,14 +3,10 @@ import type { NavMenu } from '@/components/NavMain.vue'
 import type { SidebarProps } from '@/components/ui/sidebar'
 import {
   AudioWaveform,
-  BookOpen,
-  Bot,
   Command,
   Frame,
   GalleryVerticalEnd,
-  Map,
   PieChart,
-  Settings2,
   SquareTerminal,
 } from 'lucide-vue-next'
 import NavMain from '@/components/NavMain.vue'
@@ -98,10 +94,10 @@ const data = {
       <TeamSwitcher :teams="data.teams" />
     </SidebarHeader>
     <SidebarContent>
-      <NavMain :items="data.navMenu as NavMenu" />
+      <NavMain :items="data.navMenu" />
     </SidebarContent>
     <SidebarFooter>
-      <NavUser :user="data.user" />
+      <NavUser />
     </SidebarFooter>
     <SidebarRail />
   </Sidebar>

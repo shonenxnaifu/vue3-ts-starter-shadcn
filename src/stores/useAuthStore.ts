@@ -33,18 +33,18 @@ export const useAuthStore = defineStore('auth', () => {
 
   async function refreshAccessToken(): Promise<void> {
     const user = getUser()
-    if (!user?.refresh_token) {
+    if (!user?.refreshToken) {
       resetUser()
       throw new Error('No refresh token available')
     }
 
     _isRefreshing.value = true
     try {
-      const response = await refreshToken(user.refresh_token)
+      const response = await refreshToken(user.refreshToken)
       setUser({
         ...user,
-        token: response.data.token,
-        refresh_token: response.data.refresh_token,
+        accessToken: response.accessToken,
+        refreshToken: response.refreshToken,
       })
       _failedRequests.forEach(cb => cb())
       _failedRequests.length = 0

@@ -29,7 +29,7 @@ const showPass = ref<boolean>(false)
 
 const formSchema = toTypedSchema(
   object({
-    email: string().email('Email tidak sesuai format. Harus menggunakan \'@\' disertai dengan domain.').required('Email tidak boleh kosong.'),
+    username: string().required('Username tidak boleh kosong.'),
     password: string().required('Password tidak boleh kosong.'),
   }),
 )
@@ -44,18 +44,18 @@ const { setUser } = useAuthStore()
 const { handleSubmit } = useForm({
   validationSchema: formSchema,
   initialValues: {
-    email: '',
+    username: '',
     password: '',
   },
 })
 
 const onSubmit = handleSubmit(async (data) => {
   try {
-    const resp = await mutateAsync({ email: data.email, password: data.password })
+    const resp = await mutateAsync({ username: data.username, password: data.password })
 
-    if (resp?.data) {
+    if (resp) {
       setUser({
-        ...resp.data,
+        ...resp,
         isLoggedIn: true,
       })
       window.location.href = '/'
@@ -82,17 +82,16 @@ const onSubmit = handleSubmit(async (data) => {
           Silakan masuk untuk mengelola Dashboard Anda
         </p>
       </div>
-      <VeeField v-slot="{ field, errors }" name="email">
+      <VeeField v-slot="{ field, errors }" name="username">
         <Field>
-          <FieldLabel for="email">
-            Email
+          <FieldLabel for="username">
+            Username
           </FieldLabel>
           <InputGroup class="bg-white">
             <InputGroupInput
-              id="email"
+              id="username"
               v-bind="field"
-              type="email"
-              placeholder="Masukkan email"
+              placeholder="Masukkan username"
               autocomplete="off"
               :aria-invalid="!!errors.length"
             />

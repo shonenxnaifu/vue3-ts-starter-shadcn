@@ -3,15 +3,15 @@ import {
   BadgeCheck,
   Bell,
   ChevronsUpDown,
-  CreditCard,
   LogOut,
-  Sparkles,
-} from "lucide-vue-next"
+} from 'lucide-vue-next'
 
+import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { toast } from 'vue-sonner'
 import {
   Avatar,
   AvatarFallback,
-  AvatarImage,
 } from '@/components/ui/avatar'
 import {
   DropdownMenu,
@@ -28,16 +28,34 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar'
-
-const props = defineProps<{
-  user: {
-    name: string
-    email: string
-    avatar: string
-  }
-}>()
+import { useAuthStore } from '@/stores'
 
 const { isMobile } = useSidebar()
+
+const userData = ref<{ name: string, email: string }>({ name: 'Sadie Sink', email: 'sadiesink@gmail.com' })
+
+const router = useRouter()
+
+const { getUser, resetUser } = useAuthStore()
+
+async function onClickLogout() {
+  try {
+    resetUser()
+    window.location.href = '/auth/login'
+  }
+  catch (error: any) {
+    toast.error(error.message)
+  }
+}
+
+onMounted(() => {
+  if (getUser()) {
+    userData.value = {
+      name: getUser()?.firstName && getUser()?.lastName ? `${getUser()?.firstName} ${getUser()?.lastName}` : `${getUser()?.firstName || ''}`,
+      email: getUser()?.email || '',
+    }
+  }
+})
 </script>
 
 <template>
@@ -50,14 +68,14 @@ const { isMobile } = useSidebar()
             class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
           >
             <Avatar class="h-8 w-8 rounded-lg">
-              <AvatarImage :src="user.avatar" :alt="user.name" />
+              <!-- <AvatarImage :src="props.user.avatar" :alt="props.user.name" /> -->
               <AvatarFallback class="rounded-lg">
                 CN
               </AvatarFallback>
             </Avatar>
             <div class="grid flex-1 text-left text-sm leading-tight">
-              <span class="truncate font-medium">{{ user.name }}</span>
-              <span class="truncate text-xs">{{ user.email }}</span>
+              <span class="truncate font-medium">{{ userData.name }}</span>
+              <span class="truncate text-xs">{{ userData.email }}</span>
             </div>
             <ChevronsUpDown class="ml-auto size-4" />
           </SidebarMenuButton>
@@ -71,33 +89,26 @@ const { isMobile } = useSidebar()
           <DropdownMenuLabel class="p-0 font-normal">
             <div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
               <Avatar class="h-8 w-8 rounded-lg">
-                <AvatarImage :src="user.avatar" :alt="user.name" />
+                <!-- <AvatarImage :src="user.avatar" :alt="props.user.name" /> -->
                 <AvatarFallback class="rounded-lg">
                   CN
                 </AvatarFallback>
               </Avatar>
               <div class="grid flex-1 text-left text-sm leading-tight">
-                <span class="truncate font-semibold">{{ user.name }}</span>
-                <span class="truncate text-xs">{{ user.email }}</span>
+                <span class="truncate font-semibold">{{ userData.name }}</span>
+                <span class="truncate text-xs">{{ userData.email }}</span>
               </div>
             </div>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-            <DropdownMenuItem>
-              <Sparkles />
-              Upgrade to Pro
-            </DropdownMenuItem>
-          </DropdownMenuGroup>
-          <DropdownMenuSeparator />
-          <DropdownMenuGroup>
-            <DropdownMenuItem>
+            <DropdownMenuItem
+              @click="() => {
+                router.push('/account')
+              }"
+            >
               <BadgeCheck />
               Account
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <CreditCard />
-              Billing
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Bell />
@@ -105,7 +116,7 @@ const { isMobile } = useSidebar()
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>
+          <DropdownMenuItem @click="onClickLogout">
             <LogOut />
             Log out
           </DropdownMenuItem>

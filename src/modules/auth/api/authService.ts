@@ -1,10 +1,13 @@
 import type { AxiosResponse } from 'axios'
 import type { Auth } from '../types'
-import type { ResponseApi } from '@/types'
-import { axiosMitra } from '@/libs/axios-instances'
+import { axiosBase } from '@/libs/axios-instances'
 
-export function loginDefault({ email, password }: { email: string, password: string }): Promise<ResponseApi<Auth>> {
-  return axiosMitra.post('/mitra/api/v1/auth/login', { email, password })
+export function loginDefault({ username, password }: { username: string, password: string }): Promise<Auth> {
+  return axiosBase.post(
+    '/auth/login',
+    { username, password },
+    { withCredentials: true },
+  )
     .then((resp: AxiosResponse) => {
       return resp.data
     })
@@ -13,8 +16,8 @@ export function loginDefault({ email, password }: { email: string, password: str
     })
 }
 
-export function logoutDefault(): Promise<ResponseApi<Auth>> {
-  return axiosMitra.post('/mitra/api/v1/auth/logout', {})
+export function logoutDefault(): Promise<Auth> {
+  return axiosBase.post('/auth/logout', {})
     .then((resp: AxiosResponse) => {
       return resp.data
     })
@@ -23,8 +26,12 @@ export function logoutDefault(): Promise<ResponseApi<Auth>> {
     })
 }
 
-export function refreshToken(refreshToken: string): Promise<ResponseApi<Auth>> {
-  return axiosMitra.post('/mitra/api/v1/auth/refresh', { refresh_token: refreshToken })
+export function refreshToken(refreshToken: string): Promise<Auth> {
+  return axiosBase.post(
+    '/auth/refresh',
+    { refreshToken },
+    { withCredentials: true },
+  )
     .then((resp: AxiosResponse) => {
       return resp.data
     })

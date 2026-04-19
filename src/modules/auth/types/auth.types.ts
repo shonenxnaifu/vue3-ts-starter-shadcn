@@ -1,8 +1,12 @@
 export interface Auth {
-  token: string
-  refresh_token: string
-  role_code: string
-  user_id: string
-  email: string
   isLoggedIn: boolean
+  accessToken: string
+  refreshToken: string
+  id: number
+  username: string
+  email: string
+  firstName: string
+  lastName: string
+  gender: string
+  image: string
 }

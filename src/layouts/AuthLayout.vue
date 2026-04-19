@@ -10,7 +10,7 @@
         class="absolute h-2/3 w-2/3 inset-0 object-contain dark:brightness-[0.2] dark:grayscale rounded-xl self-center mx-auto"
       >
     </div>
-    <div class="flex flex-col gap-4 p-10 bg-gray-200 rounded-xl">
+    <div class="flex flex-col gap-4 p-10 bg-gray-100/70 border-2 border-border rounded-xl">
       <slot />
     </div>
   </div>
