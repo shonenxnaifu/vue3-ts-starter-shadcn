@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { NavMenu } from '@/components/NavMain.vue'
 import type { SidebarProps } from '@/components/ui/sidebar'
 import {
   AudioWaveform,

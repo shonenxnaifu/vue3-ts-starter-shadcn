@@ -67,7 +67,7 @@ export function createAxiosInstance(option: CreateAxiosOptions): AxiosInstance {
               .then(() => {
                 const user = authStore.getUser()
                 if (user) {
-                  config.headers!.authorization = `Bearer ${user.token}`
+                  config.headers!.authorization = `Bearer ${user.accessToken}`
                   resolve(axios(config))
                 }
               })
@@ -83,7 +83,7 @@ export function createAxiosInstance(option: CreateAxiosOptions): AxiosInstance {
             authStore.addFailedRequest(() => {
               const user = authStore.getUser()
               if (user && error.config) {
-                error.config.headers!.authorization = `Bearer ${user.token}`
+                error.config.headers!.authorization = `Bearer ${user.accessToken}`
                 resolve(axios(error.config))
               }
             })
@@ -125,7 +125,7 @@ export function createAxiosInstance(option: CreateAxiosOptions): AxiosInstance {
     const authStore = useAuthStore()
 
     const userCred = authStore.getUser()
-    const token = userCred?.token
+    const token = userCred?.accessToken
 
     if (token && config.headers) {
       config.headers.authorization = `Bearer ${token}`
