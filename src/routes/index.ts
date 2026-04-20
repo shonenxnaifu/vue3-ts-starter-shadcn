@@ -10,6 +10,8 @@ import { postsRoutes } from '@/modules/posts/posts.route'
 import { usersRoutes } from '@/modules/users/users.route'
 import { useAuthStore } from '@/stores'
 
+const PageNotFound: () => Promise<typeof import('@/layouts/PageNotFound.vue')> = () => import('@/layouts/PageNotFound.vue')
+
 const routes = createRouter({
   history: createWebHistory(),
   routes: [
@@ -19,6 +21,11 @@ const routes = createRouter({
       path: '/modules',
       name: 'modules',
       children: [...postsRoutes, ...usersRoutes],
+    },
+    {
+      name: 'notfound',
+      path: '/:pathMatch(.*)*',
+      component: PageNotFound,
     },
   ],
 })
