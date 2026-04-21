@@ -61,12 +61,12 @@ const data = {
         icon: SquareTerminal,
         items: [
           {
-            title: 'Posts',
-            url: '/posts',
+            title: 'Product',
+            url: '/product',
           },
           {
-            title: 'Users',
-            url: '/users',
+            title: 'Recipe',
+            url: '#',
           },
         ],
       },

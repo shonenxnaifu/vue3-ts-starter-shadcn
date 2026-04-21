@@ -12,3 +12,9 @@ export interface ResponseApi<T = unknown> {
   time: string
   meta?: Meta
 }
+
+export interface BaseResponseList {
+  limit: number
+  skip: number
+  total: number
+}

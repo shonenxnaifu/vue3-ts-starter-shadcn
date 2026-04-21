@@ -6,7 +6,7 @@ import {
 import { accountRoutes } from '@/modules/account/account.route'
 import { authRoutes } from '@/modules/auth/login.route'
 import { dashboardRoutes } from '@/modules/dashboard/dashboard.route'
-import { postsRoutes } from '@/modules/posts/posts.route'
+import { productRoutes } from '@/modules/product/product.route'
 import { usersRoutes } from '@/modules/users/users.route'
 import { useAuthStore } from '@/stores'
 
@@ -18,10 +18,11 @@ const routes = createRouter({
     ...authRoutes,
     ...dashboardRoutes,
     ...accountRoutes,
+    ...productRoutes,
     {
       path: '/modules',
       name: 'modules',
-      children: [...postsRoutes, ...usersRoutes],
+      children: [...usersRoutes],
     },
     {
       name: 'notfound',
