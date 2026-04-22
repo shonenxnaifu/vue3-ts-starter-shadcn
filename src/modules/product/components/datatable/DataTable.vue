@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import type { PaginationState } from '@tanstack/vue-table'
-import { getCoreRowModel, useVueTable } from '@tanstack/vue-table'
-import { Plus, Search } from 'lucide-vue-next'
+import { FlexRender, getCoreRowModel, useVueTable } from '@tanstack/vue-table'
+import { Columns3, Plus, Search } from 'lucide-vue-next'
 import { ref } from 'vue'
 import TableWrapper from '@/components/datatable/serverside/Table.vue'
 import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { Field, FieldGroup, FieldSet } from '@/components/ui/field'
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group'
 import debounce from '@/utils/debounce'
@@ -103,6 +105,33 @@ function setPagination({
       </FieldSet>
     </div>
     <div class="flex items-center gap-2">
+      <DropdownMenu>
+        <DropdownMenuTrigger as-child>
+          <Button variant="outline" class="ml-auto">
+            Columns <Columns3 class="ml-2 h-4 w-4" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuCheckboxItem
+            v-for="column in table.getAllColumns().filter((column) => column.getCanHide() && column.id.toString() !== 'aksi' && column.id.toString() !== 'index')"
+            :key="column.id"
+            class="capitalize"
+            :model-value="column.getIsVisible()"
+            force-mount
+            @update:model-value="(value) => {
+              column.toggleVisibility(!!value)
+            }"
+          >
+            <template #indicator-icon>
+              <Checkbox :model-value="column.getIsVisible()" />
+            </template>
+            <FlexRender
+              :render="column.columnDef.header"
+              :props="table.getFlatHeaders().find(h => h.id === column.id)?.getContext()"
+            />
+          </DropdownMenuCheckboxItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
       <DialogAddProduct
         :refetch="refetch"
       >
