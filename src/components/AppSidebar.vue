@@ -56,17 +56,17 @@ const data = {
         icon: Frame,
       },
       {
-        title: 'Modules',
+        title: 'Master',
         url: '#',
         icon: SquareTerminal,
         items: [
           {
             title: 'Product',
-            url: '/product',
+            url: '/master/product',
           },
           {
-            title: 'Recipe',
-            url: '#',
+            title: 'User',
+            url: '/master/user',
           },
         ],
       },

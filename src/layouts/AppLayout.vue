@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { CircleCheck, CircleX } from 'lucide-vue-next'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import { Toaster } from 'vue-sonner'
 import AppSidebar from '@/components/AppSidebar.vue'
 import {
@@ -12,6 +14,12 @@ import {
 } from '@/components/ui/breadcrumb'
 import { Separator } from '@/components/ui/separator'
 import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
+
+const route = useRoute()
+
+const breadcrumbRoutes = computed(() => {
+  return route.matched.filter(r => r.meta.pageName)
+})
 </script>
 
 <template>
@@ -27,16 +35,18 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/s
           />
           <Breadcrumb>
             <BreadcrumbList class="capitalize">
-              <template v-for="(routeMatched, index) in $route.matched" :key="routeMatched.name">
-                <BreadcrumbItem v-if="index !== ($route.matched.length - 1)" class="hidden md:block">
+              <template v-for="(routeMatched, index) in breadcrumbRoutes" :key="routeMatched.name">
+                <BreadcrumbItem v-if="index !== (breadcrumbRoutes.length - 1)" class="hidden md:block">
                   <BreadcrumbLink href="#">
-                    {{ routeMatched.name }}
+                    {{ routeMatched.meta.pageName }}
                   </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbItem v-else>
-                  <BreadcrumbPage>{{ routeMatched.name }}</BreadcrumbPage>
+                  <BreadcrumbPage class="text-primary">
+                    {{ routeMatched.meta.pageName }}
+                  </BreadcrumbPage>
                 </BreadcrumbItem>
-                <BreadcrumbSeparator v-if="index !== ($route.matched.length - 1)" class="hidden md:block" />
+                <BreadcrumbSeparator v-if="index !== (breadcrumbRoutes.length - 1)" class="hidden md:block" />
               </template>
             </BreadcrumbList>
           </Breadcrumb>
