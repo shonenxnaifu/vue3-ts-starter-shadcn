@@ -16,7 +16,7 @@ export function valueUpdater<T extends Updater<any>>(updaterOrValue: T, ref: Ref
 }
 
 export function formatCurrency(numVal: number): string {
-  const formattedVal = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(
+  const formattedVal = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(
     numVal,
   )
 

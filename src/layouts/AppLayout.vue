@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { CircleCheck, CircleX } from 'lucide-vue-next'
+import { Toaster } from 'vue-sonner'
 import AppSidebar from '@/components/AppSidebar.vue'
 import {
   Breadcrumb,
@@ -47,4 +49,12 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/s
       </div>
     </SidebarInset>
   </SidebarProvider>
+  <Toaster rich-colors position="top-right">
+    <template #success-icon>
+      <CircleCheck />
+    </template>
+    <template #error-icon>
+      <CircleX />
+    </template>
+  </Toaster>
 </template>

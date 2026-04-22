@@ -1,5 +1,11 @@
 import type { BaseResponseList } from '@/types'
 
+export interface checkboxType {
+  status: string
+  checked: boolean
+  value?: string
+}
+
 export interface Meta {
   createdAt: string
   updatedAt: string
@@ -30,6 +36,14 @@ export interface Product {
   thumbnail: string
   images: Array<string>
   meta: Meta
+}
+
+export interface Payload {
+  title: string
+  description: string
+  category: string
+  price: number
+  stock: number
 }
 
 export interface ListProduct extends BaseResponseList {

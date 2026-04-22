@@ -1,8 +1,9 @@
 import type { ColumnDef } from '@tanstack/vue-table'
 import type { Meta, Product } from '../../types'
 import { h } from 'vue'
-import { formatCurrency, formatNumber, formatDate } from '@/lib/utils'
+import { formatCurrency, formatDate, formatNumber } from '@/lib/utils'
 import Tags from '../badge/Tags.vue'
+import CustomCellActions from './CustomCellActions.vue'
 
 export const columns: ColumnDef<Product>[] = [
   {
@@ -18,6 +19,11 @@ export const columns: ColumnDef<Product>[] = [
     accessorKey: 'title',
     header: 'Name',
     cell: ({ row }) => h('div', { class: 'text-left' }, row.getValue('title')),
+  },
+  {
+    accessorKey: 'brand',
+    header: 'Brand',
+    cell: ({ row }) => h('div', { class: 'text-left' }, row.getValue('brand')),
   },
   {
     accessorKey: 'category',
@@ -73,6 +79,21 @@ export const columns: ColumnDef<Product>[] = [
         'div',
         { class: 'relative text-center' },
         h(Tags, { dataProduct }),
+      )
+    },
+  },
+  {
+    accessorKey: 'id',
+    header: () => {
+      return h('div', { class: 'text-center' }, 'Actions')
+    },
+    cell: ({ row }) => {
+      const dataProduct = row.original
+
+      return h(
+        'div',
+        { class: 'relative text-center' },
+        h(CustomCellActions, { productData: dataProduct }),
       )
     },
   },
