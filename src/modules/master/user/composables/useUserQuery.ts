@@ -11,7 +11,7 @@ export function useListUser(
   search?: Ref<string | undefined>,
 ): UseQueryReturnType<ListUser, Error> {
   return useQuery({
-    queryKey: ['list-product', pagination, search],
+    queryKey: ['list-user', pagination, search],
     queryFn: async () => {
       try {
         const respData = await getListUser({
