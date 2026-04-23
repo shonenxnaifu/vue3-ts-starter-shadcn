@@ -70,3 +70,22 @@ export function getAllCategories(): Promise<Array<string>> {
       throw new Error(e.message || 'Unknown error occurred')
     })
 }
+
+export function getListProductByCategory(
+  cat: string,
+  params?: {
+    skip?: number
+    limit?: number
+  },
+): Promise<ListProduct> {
+  return axiosBase.get(
+    `/products/category/${cat}`,
+    {
+      params,
+    },
+  ).then((resp: AxiosResponse) => {
+    return resp.data
+  }).catch((e) => {
+    throw new Error(e.message || 'Unknown error occurred')
+  })
+}

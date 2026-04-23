@@ -4,7 +4,7 @@ import type { Ref } from 'vue'
 import type { ListProduct, Payload, Product } from '@/modules/product/types'
 import { useMutation, useQuery } from '@tanstack/vue-query'
 import { toast } from 'vue-sonner'
-import { addProduct, deleteProduct, detailProduct, getAllCategories, getListProduct, updateProduct } from '@/modules/product/api/productService'
+import { addProduct, deleteProduct, detailProduct, getAllCategories, getListProduct, getListProductByCategory, updateProduct } from '@/modules/product/api/productService'
 
 export function useListProduct(
   pagination: Ref<PaginationState>,
@@ -98,5 +98,27 @@ export function useDeleteProduct(): UseMutationReturnType<Product | undefined, E
         throw new Error(e.message || 'Unknown error occurred')
       }
     },
+  })
+}
+
+export function useListProductByCategory(
+  cat: string,
+  pagination: Ref<PaginationState>,
+): UseQueryReturnType<ListProduct, Error> {
+  return useQuery({
+    queryKey: ['list-product', pagination, cat],
+    queryFn: async () => {
+      try {
+        const respData = await getListProductByCategory(cat, {
+          limit: pagination.value.pageSize,
+          skip: pagination.value.pageIndex * 10,
+        })
+        return respData
+      }
+      catch (e: any) {
+        toast.error(e.message)
+      }
+    },
+    placeholderData: previousData => previousData,
   })
 }
