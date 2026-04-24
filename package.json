@@ -27,6 +27,7 @@
     "@vueuse/integrations": "^13.9.0",
     "axios": "1.13.2",
     "chart.js": "^4.5.1",
+    "chartjs-plugin-datalabels": "^2.2.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "concurrently": "^9.2.1",

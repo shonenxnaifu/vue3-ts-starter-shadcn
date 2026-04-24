@@ -106,7 +106,7 @@ export function useListProductByCategory(
   pagination: Ref<PaginationState>,
 ): UseQueryReturnType<ListProduct, Error> {
   return useQuery({
-    queryKey: ['list-product', pagination, cat],
+    queryKey: ['list-product-by-cat', pagination, cat],
     queryFn: async () => {
       try {
         const respData = await getListProductByCategory(cat, {
@@ -119,6 +119,32 @@ export function useListProductByCategory(
         toast.error(e.message)
       }
     },
+    placeholderData: previousData => previousData,
+  })
+}
+
+export function useListProductByFilterCat(
+  sortBy: string,
+  orderBy: 'asc' | 'desc',
+  cat?: Ref<string | undefined>,
+): UseQueryReturnType<ListProduct, Error> {
+  return useQuery({
+    queryKey: ['list-product-by-filter-cat', sortBy, orderBy, cat],
+    queryFn: async () => {
+      try {
+        const respData = await getListProductByCategory(cat?.value, {
+          limit: 5,
+          skip: 0,
+          sortBy,
+          order: orderBy,
+        })
+        return respData
+      }
+      catch (e: any) {
+        toast.error(e.message)
+      }
+    },
+    enabled: () => cat?.value !== undefined,
     placeholderData: previousData => previousData,
   })
 }

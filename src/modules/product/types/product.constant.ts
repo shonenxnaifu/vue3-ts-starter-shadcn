@@ -7,9 +7,9 @@ export enum AuthConstant {
   ROLE_CODE = 'role_CODE',
 }
 
-export enum Role {
-  ADMINISTRATOR = 'ADMINISTRATOR',
-  MITRA = 'MITRA',
-  ADMIN_MITRA = 'ADMIN_MITRA',
-  ANGGOTA_MITRA = 'ANGGOTA_MITRA',
+export enum Category {
+  BEAUTY = 'beauty',
+  FRAGRANCES = 'fragrances',
+  FURNITURE = 'furniture',
+  GROCERIES = 'groceries',
 }

@@ -72,10 +72,13 @@ export function getAllCategories(): Promise<Array<string>> {
 }
 
 export function getListProductByCategory(
-  cat: string,
+  cat: string | undefined,
   params?: {
     skip?: number
     limit?: number
+    sortBy?: string
+    order?: string
+    cat?: string
   },
 ): Promise<ListProduct> {
   return axiosBase.get(
