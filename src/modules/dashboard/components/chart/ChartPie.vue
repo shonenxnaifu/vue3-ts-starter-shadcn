@@ -99,7 +99,7 @@ const htmlLegendPlugin = {
       const valueContainer = document.createElement('span')
       const value = chart.data.datasets[0].data[item.index] as number
       valueContainer.className = `text-sm font-bold ml-8 transition-colors ${item.hidden ? 'text-gray-400' : 'text-gray-900'}`
-      valueContainer.textContent = value.toLocaleString('id-ID')
+      valueContainer.textContent = `USD$ ${value.toLocaleString('id-ID')}`
 
       li.appendChild(topRow)
       li.appendChild(valueContainer)

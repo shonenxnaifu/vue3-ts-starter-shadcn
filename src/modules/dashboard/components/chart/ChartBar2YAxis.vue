@@ -75,7 +75,7 @@ const chartDataOpt = computed<ChartDataOpt>(() => {
         beginAtZero: true,
         title: {
           display: true,
-          text: 'Price',
+          text: 'Price (USD$)',
           color: 'rgba(0,0,0)',
           font: {
             size: 14,
