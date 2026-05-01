@@ -2,10 +2,12 @@
 import type { SidebarProps } from '@/components/ui/sidebar'
 import {
   AudioWaveform,
+  Calendar,
+  CalendarDays,
   Command,
   Frame,
   GalleryVerticalEnd,
-  PieChart,
+  Palette,
   SquareTerminal,
 } from 'lucide-vue-next'
 import NavMain from '@/components/NavMain.vue'
@@ -73,14 +75,19 @@ const data = {
     ],
     components: [
       {
+        title: 'Color System',
+        url: '#',
+        icon: Palette,
+      },
+      {
         title: 'Calendar',
         url: '#',
-        icon: Frame,
+        icon: Calendar,
       },
       {
         title: 'Range Calendar',
         url: '#',
-        icon: PieChart,
+        icon: CalendarDays,
       },
     ],
   },

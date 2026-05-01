@@ -31,9 +31,17 @@ export function externalTooltipHandler(context: any): void {
 
   // Hide if no tooltip
   if (tooltip.opacity === 0) {
-    tooltipEl.style.display = 'none'
+    if (!tooltipEl.matches(':hover')) {
+      tooltipEl.style.display = 'none'
+    }
     return
   }
+
+  tooltipEl.addEventListener('mouseleave', () => {
+    if (chart.tooltip && tooltip.opacity === 0) {
+      tooltipEl.style.display = 'none'
+    }
+  })
 
   // Set Text
   if (tooltip.body) {
